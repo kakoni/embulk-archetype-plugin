@@ -1,6 +1,6 @@
 # Introduction
 
-Maven archetype to help you create new embulk input plugin.
+Maven archetype to help you create new embulk(=>0.11) input plugin.
 
 ## Usage
 - Clone this repository;
