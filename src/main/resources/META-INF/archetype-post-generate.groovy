@@ -1,23 +1,29 @@
 import java.nio.file.*
 
-def artifactId = request.properties.get('artifactId')
-def sanitized = artifactId.replaceAll('-', '')
-def capitalized = sanitized.substring(0,1).toUpperCase() + sanitized.substring(1)
+println "Debug: Properties available:"
+request.properties.each { k,v -> 
+    println "  ${k} = ${v}"
+}
 
-// Original path where Maven IT expects files
-Path sourceDir = Paths.get(
-  request.outputDirectory, 
-  artifactId,
-  "src/main/java/${request.properties.package.replace('.','/')}"
+def sourceDir = Paths.get(
+    request.outputDirectory,
+    request.properties.artifactId,
+    "src/main/java/${request.properties.package.replace('.','/')}"
 )
 
-// Create Path objects for source and target files
-Path sourcePath = sourceDir.resolve(artifactId + "InputPlugin.java")
-Path targetPath = sourceDir.resolve(capitalized + "InputPlugin.java")
+println "Source directory: ${sourceDir}"
 
-// Create a temporary file with a completely different name
+// Source is just InputPlugin.java
+Path sourcePath = sourceDir.resolve("InputPlugin.java")
+println "Source file exists: ${Files.exists(sourcePath)}"
+
+// Create target name using type
+def type = request.properties.type
+def capitalizedType = type.substring(0,1).toUpperCase() + type.substring(1)
+Path targetPath = sourceDir.resolve(capitalizedType + "InputPlugin.java")
+println "Target path: ${targetPath}"
+
+// Use temp file approach for case-sensitivity
 Path tempPath = sourceDir.resolve("TEMP_" + System.currentTimeMillis() + ".java")
 Files.move(sourcePath, tempPath)
-
-// Then move from temp to final destination
 Files.move(tempPath, targetPath)

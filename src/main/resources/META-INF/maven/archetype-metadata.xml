@@ -1,22 +1,23 @@
 <archetype-descriptor>
   <requiredProperties>
-
-    <requiredProperty key="package">
-      <defaultValue>${groupId}.input.${artifactId}</defaultValue>
-    </requiredProperty>
-
-    <requiredProperty key="pluginClass">
-      <defaultValue>${artifactId.substring(0,1).toUpperCase()}${artifactId.substring(1)}InputPlugin</defaultValue>
-    </requiredProperty>
-
-    <requiredProperty key="category">
-      <defaultValue>input</defaultValue>
-    </requiredProperty>
-
-    <requiredProperty key="projectName">
-        <defaultValue>embulk-${category}-${artifactId}</defaultValue>
-    </requiredProperty>
-
+      <requiredProperty key="type">
+          <defaultValue>basic</defaultValue>
+      </requiredProperty>
+      <requiredProperty key="category">
+          <defaultValue>input</defaultValue>
+      </requiredProperty>
+      <requiredProperty key="groupId">
+          <defaultValue>org.embulk</defaultValue>
+      </requiredProperty>
+      <requiredProperty key="version">
+          <defaultValue>0.1.0</defaultValue>
+      </requiredProperty>
+      <requiredProperty key="artifactId">
+          <defaultValue>embulk-${category}-${type}</defaultValue>
+      </requiredProperty>
+      <requiredProperty key="package">
+          <defaultValue>${groupId}.${category}.${type}</defaultValue>
+      </requiredProperty>
   </requiredProperties>
 
   <fileSets>

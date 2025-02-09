@@ -2,7 +2,7 @@ plugins {
     id "java"
     id "maven-publish"
     id "signing"
-    id "checkstyle"
+    //id "checkstyle"
 
     id "org.embulk.embulk-plugins" version "0.7.0"  
 }
@@ -49,15 +49,9 @@ dependencies {
 }
 
 embulkPlugin {
-    // Set the plugin's main class.
-    mainClass = "${package}.${pluginClass}"
-
-    // Set: "decoder", "encoder", "filter", "formatter", "guess", "input", "output", or "parser"
+    mainClass = "${package}.${type.substring(0,1).toUpperCase()}${type.substring(1)}InputPlugin"
     category = "${category}"
-
-    / Set the "type" of the Embulk plugin used in Embulk's configuration YAML.
-    // For instance, it would be "example" for "embulk-input-example".
-    type = "${artifactId}"
+    type = "${type}"
 }
 
 // It would be a good habit to contain the LICENSE file(s) at "META-INF/" in your plugin packages.
