@@ -3,12 +3,14 @@
 Maven archetype to help you create new embulk input plugin.
 
 ## Usage
-. Clone this repository;
-. Install the archetype locally:
-```mvn clean install````
+- Clone this repository;
+- Install the archetype locally:
+```mvn clean install```
 
-. After you do that, you can go to the target directory and perform the following command:
+- After you do that, you can go to the target directory and perform the following command:
 
-```mvn archetype:generate -DarchetypeCatalog=local -DarchetypeGroupId=org.embulk -DarchetypeArtifactId=embulk-archetype-plugin -Dtype=databricks -DgroupId=org.moo
+
+```
+mvn archetype:generate -DarchetypeCatalog=local -DarchetypeGroupId=org.embulk -DarchetypeArtifactId=embulk-archetype-plugin -Dtype=databricks -DgroupId=org.moo
 ```
 
