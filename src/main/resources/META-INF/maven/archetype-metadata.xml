@@ -1,0 +1,59 @@
+<archetype-descriptor>
+  <requiredProperties>
+
+    <requiredProperty key="package">
+      <defaultValue>${groupId}.input.${artifactId}</defaultValue>
+    </requiredProperty>
+
+    <requiredProperty key="pluginClass">
+      <defaultValue>${artifactId.substring(0,1).toUpperCase()}${artifactId.substring(1)}InputPlugin</defaultValue>
+    </requiredProperty>
+
+    <requiredProperty key="category">
+      <defaultValue>input</defaultValue>
+    </requiredProperty>
+
+    <requiredProperty key="projectName">
+        <defaultValue>embulk-${category}-${artifactId}</defaultValue>
+    </requiredProperty>
+
+  </requiredProperties>
+
+  <fileSets>
+
+    <fileSet filtered="true" packaged="true">
+
+      <directory>src/main/java</directory>
+      <includes>
+        <include>**/*.java</include>
+      </includes>
+    </fileSet>
+
+    <!-- Add Gradle files -->
+
+    <fileSet filtered="true">
+      <directory></directory>
+      <includes>
+        <include>build.gradle</include>
+        <include>settings.gradle</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="false" packaged="false">
+      <directory></directory>
+      <includes>
+        <include>gradlew</include>
+        <include>gradlew.bat</include>
+      </includes>
+      <fileMode>755</fileMode>
+    </fileSet>
+
+    <!-- Gradle wrapper files -->
+    <fileSet filtered="false">
+      <directory>gradle/wrapper</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</archetype-descriptor>
